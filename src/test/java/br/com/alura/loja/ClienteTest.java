@@ -7,8 +7,20 @@ import javax.ws.rs.client.WebTarget;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.thoughtworks.xstream.XStream;
+
 public class ClienteTest {
 	
+	
+	@Test
+	public void testaQueBuscarUmCarrinhoTrazOCarrinhoEsperado() {
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target("http://localhost:8080");
+		String conteudo = target.path("/carrinhos").request().get(String.class);
+		
+		XStream().fromXml(conteudo);
+	}
+
 	@Test
     public void testaQueAConexaoComOServidorFunciona() {
 		Client client = ClientBuilder.newClient();
